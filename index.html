@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ============ SEO / SOCIAL ============ -->
+  <title>Akshat Srivastava — Frontend Tech Lead &amp; Design Systems Architect</title>
+  <meta name="description" content="Akshat Srivastava is a Frontend Tech Lead with 8+ years architecting design systems and high-traffic web platforms. Specialist in React component architecture, SSR/CSR rendering, CDN caching and SEO." />
+  <meta name="author" content="Akshat Srivastava" />
+  <link rel="canonical" href="https://akshatsrivastava.dev/" />
+  <meta name="theme-color" content="#f4f1e9" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Akshat Srivastava — Frontend Tech Lead &amp; Design Systems Architect" />
+  <meta property="og:description" content="8+ years architecting design systems and high-traffic web platforms. React, SSR/CSR, CDN, SEO." />
+  <meta property="og:url" content="https://akshatsrivastava.dev/" />
+  <meta property="og:image" content="https://akshatsrivastava.dev/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Structured data: Person schema (helps Google rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Akshat Srivastava",
+    "jobTitle": "Frontend Tech Lead",
+    "email": "mailto:akshatmindfire@gmail.com",
+    "telephone": "+91-8090286171",
+    "url": "https://akshatsrivastava.dev/",
+    "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN" },
+    "sameAs": ["https://linkedin.com/in/akshat-srivastava"],
+    "knowsAbout": ["Design Systems","React","Redux","TypeScript","JavaScript","Node.js","Next.js","Remix","NestJS","WebSockets","REST API Design","Docker","Kubernetes","CI/CD","Headless CMS","Web Platform Architecture","Server-Side Rendering","SEO","Performance Optimization","Technical Leadership","Mentorship"],
+    "worksFor": { "@type": "Organization", "name": "ROSHN Group" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "BIT Meerut" }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       DESIGN TOKENS  —  the system this site is built on
+       ========================================================= */
+    :root{
+      /* color */
+      --paper:#f4f1e9;
+      --paper-raised:#efe9dc;
+      --ink:#1a1612;
+      --ink-soft:#4c453b;
+      --muted:#8b8273;
+      --line:#ddd5c4;
+      --line-strong:#c8bfad;
+      --accent:#df4324;
+      --accent-deep:#b4321a;
+
+      /* type */
+      --serif:'Fraunces',Georgia,serif;
+      --sans:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+      --mono:'JetBrains Mono',ui-monospace,monospace;
+
+      /* fluid type scale */
+      --fs-mono:clamp(.66rem,.62rem + .2vw,.74rem);
+      --fs-body:clamp(1rem,.96rem + .25vw,1.12rem);
+      --fs-lead:clamp(1.25rem,1.05rem + .9vw,1.7rem);
+      --fs-h2:clamp(2rem,1.4rem + 2.6vw,3.4rem);
+      --fs-display:clamp(3.2rem,1.4rem + 8.5vw,9.5rem);
+
+      /* spacing */
+      --gutter:clamp(1.25rem,5vw,5rem);
+      --section:clamp(5rem,9vw,9rem);
+      --maxw:1240px;
+    }
+
+    /* =========================================================
+       RESET + BASE
+       ========================================================= */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    body{
+      background:var(--paper);
+      color:var(--ink);
+      font-family:var(--sans);
+      font-size:var(--fs-body);
+      line-height:1.6;
+      font-weight:400;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+      position:relative;
+    }
+    /* paper grain */
+    body::before{
+      content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+      opacity:.4;mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+
+    .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter);position:relative;z-index:1}
+
+    /* selection */
+    ::selection{background:var(--accent);color:var(--paper)}
+
+    /* mono label */
+    .label{
+      font-family:var(--mono);font-size:var(--fs-mono);font-weight:500;
+      letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    }
+    .accent{color:var(--accent)}
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(1.1) blur(6px);
+      background:color-mix(in srgb,var(--paper) 82%,transparent);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{font-family:var(--mono);font-weight:600;font-size:.82rem;letter-spacing:.04em;display:flex;align-items:center;gap:.6rem}
+    .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:pulse 2.6s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+    .nav-links{display:flex;gap:2rem;align-items:center}
+    .nav-links a{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);position:relative;padding:.2rem 0}
+    .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--accent);transition:width .28s ease}
+    .nav-links a:hover{color:var(--ink)}
+    .nav-links a:hover::after{width:100%}
+    .nav-links .cta{color:var(--accent)}
+    @media(max-width:760px){.nav-links a:not(.cta){display:none}}
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero{padding-top:clamp(3rem,9vw,7rem);padding-bottom:var(--section);position:relative}
+    .hero .meta-row{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;margin-bottom:clamp(1.5rem,4vw,2.6rem);border-bottom:1px solid var(--line);padding-bottom:1.4rem}
+    .hero .meta-row span{display:flex;flex-direction:column;gap:.35rem}
+    .hero .meta-row .v{font-family:var(--sans);font-size:.92rem;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:500}
+    .display{
+      font-family:var(--serif);font-weight:400;
+      font-size:var(--fs-display);line-height:.92;letter-spacing:-.02em;
+      font-optical-sizing:auto;
+    }
+    .display .ln{display:block;overflow:hidden}
+    .display em{font-style:italic;color:var(--accent);font-weight:300}
+    .hero .lead{
+      max-width:46ch;margin-top:clamp(1.6rem,4vw,2.4rem);
+      font-size:var(--fs-lead);line-height:1.45;color:var(--ink-soft);font-weight:400;
+    }
+    .hero .lead b{color:var(--ink);font-weight:600}
+
+    /* =========================================================
+       SECTION SCAFFOLD
+       ========================================================= */
+    section{padding-block:var(--section);position:relative}
+    .sec-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:clamp(2.2rem,5vw,3.6rem);border-top:1.5px solid var(--ink);padding-top:1.1rem}
+    .sec-head .no{font-family:var(--mono);font-size:.8rem;color:var(--accent);font-weight:600}
+    .sec-head h2{font-family:var(--serif);font-weight:400;font-size:var(--fs-h2);line-height:1;letter-spacing:-.015em}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem)}
+    @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+    .about-grid p{font-size:var(--fs-lead);line-height:1.5;color:var(--ink-soft);font-weight:400}
+    .about-grid p + p{margin-top:1.4rem}
+    .about-side{font-family:var(--mono);font-size:.84rem;line-height:1.9;color:var(--ink-soft)}
+    .about-side .row{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px dashed var(--line-strong)}
+    .about-side .row b{color:var(--ink);font-weight:600;text-align:right}
+
+    /* METRICS */
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1.5px solid var(--ink);border-radius:3px;overflow:hidden}
+    @media(max-width:820px){.metrics{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:480px){.metrics{grid-template-columns:1fr}}
+    .metric{padding:clamp(1.6rem,4vw,2.6rem) clamp(1.2rem,3vw,2rem);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .metric:hover{background:var(--paper-raised)}
+    .metric .big{font-family:var(--serif);font-size:clamp(2.6rem,7vw,4.4rem);line-height:.9;font-weight:400;letter-spacing:-.02em}
+    .metric .big .accent{font-style:italic}
+    .metric .cap{margin-top:.9rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;color:var(--ink-soft);line-height:1.5}
+
+    /* EXPERIENCE */
+    .exp{display:grid;gap:0}
+    .exp-row{display:grid;grid-template-columns:130px 1fr;gap:clamp(1rem,3vw,3rem);padding:clamp(1.4rem,3vw,2rem) 0;border-bottom:1px solid var(--line);transition:padding-left .3s ease}
+    .exp-row:hover{padding-left:14px}
+    .exp-row:first-child{border-top:1px solid var(--line)}
+    @media(max-width:680px){.exp-row{grid-template-columns:1fr;gap:.6rem}}
+    .exp-row .when{font-family:var(--mono);font-size:.76rem;color:var(--muted);padding-top:.4rem;letter-spacing:.03em}
+    .exp-row .role{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:400;line-height:1.15}
+    .exp-row .org{font-family:var(--mono);font-size:.8rem;color:var(--accent);margin-top:.35rem;letter-spacing:.04em}
+    .exp-row .desc{margin-top:.7rem;color:var(--ink-soft);max-width:62ch;font-size:.98rem}
+
+    /* PROJECTS */
+    .proj{border-top:1px solid var(--line)}
+    .proj-row{display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:clamp(1rem,3vw,2.4rem);padding:clamp(1.6rem,4vw,2.4rem) 0;border-bottom:1px solid var(--line);position:relative;transition:background .3s}
+    .proj-row:hover{background:linear-gradient(90deg,transparent,var(--paper-raised) 30%,var(--paper-raised) 70%,transparent)}
+    @media(max-width:760px){.proj-row{grid-template-columns:auto 1fr;gap:1rem}.proj-row .tags{grid-column:1/-1}}
+    .proj-row .pno{font-family:var(--mono);font-size:.82rem;color:var(--accent);font-weight:600;padding-top:.5rem}
+    .proj-row h3{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;line-height:1.05;letter-spacing:-.01em}
+    .proj-row .org-s{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-top:.4rem;letter-spacing:.06em;text-transform:uppercase}
+    .proj-row p{margin-top:.8rem;color:var(--ink-soft);max-width:58ch}
+    .proj-row p .accent{font-weight:600}
+    .tags{display:flex;flex-wrap:wrap;gap:.4rem;align-items:flex-start;justify-content:flex-end;max-width:200px}
+    .tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.03em;color:var(--ink-soft);border:1px solid var(--line-strong);border-radius:100px;padding:.25rem .65rem;white-space:nowrap}
+
+    /* CAPABILITIES */
+    .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,4vw,3rem)}
+    @media(max-width:820px){.caps{grid-template-columns:1fr 1fr}}
+    @media(max-width:520px){.caps{grid-template-columns:1fr}}
+    .cap-col h4{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-bottom:.8rem;margin-bottom:1rem;border-bottom:1.5px solid var(--ink)}
+    .cap-col ul{list-style:none}
+    .cap-col li{padding:.5rem 0;border-bottom:1px dashed var(--line);font-size:.96rem;color:var(--ink-soft);display:flex;gap:.6rem}
+    .cap-col li::before{content:"→";color:var(--accent);font-family:var(--mono)}
+
+    /* ROLE BULLETS */
+    .exp-row ul{list-style:none;margin-top:1rem;max-width:66ch}
+    .exp-row ul li{position:relative;padding:.42rem 0 .42rem 1.4rem;font-size:.95rem;color:var(--ink-soft);line-height:1.55}
+    .exp-row ul li::before{content:"▸";position:absolute;left:0;top:.42rem;color:var(--accent);font-size:.8rem}
+    .exp-row ul li b{color:var(--ink);font-weight:600}
+
+    /* LEADERSHIP */
+    .lead-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line)}
+    @media(max-width:760px){.lead-grid{grid-template-columns:1fr}}
+    .lead-card{padding:clamp(1.5rem,3.5vw,2.2rem) 0;border-bottom:1px solid var(--line);padding-right:clamp(1rem,3vw,3rem)}
+    .lead-card:nth-child(odd){border-right:1px solid var(--line);padding-right:clamp(1.5rem,4vw,3rem)}
+    @media(max-width:760px){.lead-card:nth-child(odd){border-right:none;padding-right:0}}
+    .lead-card:nth-child(even){padding-left:clamp(1.5rem,4vw,3rem)}
+    @media(max-width:760px){.lead-card:nth-child(even){padding-left:0}}
+    .lead-card .lno{font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.1em;font-weight:600}
+    .lead-card h3{font-family:var(--serif);font-size:clamp(1.25rem,2.4vw,1.65rem);font-weight:400;margin:.5rem 0 .7rem;line-height:1.15}
+    .lead-card p{color:var(--ink-soft);font-size:.96rem;max-width:46ch}
+
+    /* SKILLS MATRIX */
+    .matrix{border-top:1.5px solid var(--ink)}
+    .mrow{display:grid;grid-template-columns:190px 1fr;gap:clamp(1rem,3vw,2.5rem);padding:clamp(1.1rem,2.6vw,1.6rem) 0;border-bottom:1px solid var(--line);align-items:baseline}
+    @media(max-width:680px){.mrow{grid-template-columns:1fr;gap:.75rem}}
+    .mrow .mkey{font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+    .mrow .mvals{display:flex;flex-wrap:wrap;gap:.45rem}
+    .chip{font-family:var(--mono);font-size:.76rem;padding:.32rem .7rem;border:1px solid var(--line-strong);border-radius:2px;color:var(--ink-soft);background:var(--paper-raised);transition:all .2s ease}
+    .chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+    /* EDUCATION */
+    .edu{display:grid;grid-template-columns:130px 1fr auto;gap:clamp(1rem,3vw,3rem);align-items:baseline;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(1.4rem,3vw,2rem) 0}
+    @media(max-width:680px){.edu{grid-template-columns:1fr;gap:.5rem}}
+    .edu .when{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+    .edu .deg{font-family:var(--serif);font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:400;line-height:1.15}
+    .edu .inst{font-family:var(--mono);font-size:.8rem;color:var(--accent);margin-top:.35rem;letter-spacing:.04em}
+
+    /* CONTACT */
+    .contact{padding-block:var(--section)}
+    .contact .big-cta{font-family:var(--serif);font-size:clamp(2.4rem,7vw,6rem);line-height:1;font-weight:400;letter-spacing:-.02em;max-width:18ch}
+    .contact .big-cta a{border-bottom:3px solid var(--accent);transition:color .2s}
+    .contact .big-cta a:hover{color:var(--accent)}
+    .contact-meta{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;margin-top:clamp(2.5rem,6vw,4rem);padding-top:1.6rem;border-top:1px solid var(--line)}
+    .contact-meta a{font-family:var(--mono);font-size:.86rem;letter-spacing:.03em;display:flex;flex-direction:column;gap:.3rem;transition:color .2s}
+    .contact-meta a:hover{color:var(--accent)}
+    .contact-meta a .k{color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+
+    footer{border-top:1px solid var(--line);padding-block:2.2rem;margin-top:var(--section)}
+    .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.04em}
+
+    /* =========================================================
+       REVEAL ANIMATION (progressive enhancement)
+       ========================================================= */
+    .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+    .js .reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+    .js .hero .stagger{opacity:0;transform:translateY(20px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes rise{to{opacity:1;transform:none}}
+    @media(prefers-reduced-motion:reduce){.js .hero .stagger{opacity:1;transform:none;animation:none}}
+  </style>
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="brand"><span class="dot" aria-hidden="true"></span>AKSHAT&nbsp;SRIVASTAVA</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#projects">Projects</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact" class="cta">Contact ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="meta-row">
+        <span class="stagger" style="animation-delay:.05s"><span class="label">Role</span><span class="v">Frontend Tech Lead</span></span>
+        <span class="stagger" style="animation-delay:.12s"><span class="label">Focus</span><span class="v">Design Systems · Web Platform</span></span>
+        <span class="stagger" style="animation-delay:.19s"><span class="label">Experience</span><span class="v">8+ Years</span></span>
+        <span class="stagger" style="animation-delay:.26s"><span class="label">Based in</span><span class="v">Bengaluru, India</span></span>
+      </div>
+
+      <h1 class="display" id="hero-title">
+        <span class="ln stagger" style="animation-delay:.18s">Building the</span>
+        <span class="ln stagger" style="animation-delay:.30s"><em>systems</em> behind</span>
+        <span class="ln stagger" style="animation-delay:.42s">great products.</span>
+      </h1>
+
+      <p class="lead stagger" style="animation-delay:.6s">
+        I architect <b>design systems</b> and high-traffic web platforms — owning the call between
+        <b>client- and server-side rendering</b>, CDN caching strategy, and crawler-friendly SEO,
+        while leading teams and staying hands-on in the code.
+      </p>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="wrap">
+      <div class="sec-head reveal"><span class="no">00</span><h2>Profile</h2></div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p>
+            For eight-plus years I've built and scaled web platforms across real estate, supply chain and
+            healthcare — leading teams of up to five engineers as the technical owner of architecture,
+            design decisions and delivery, without ever stepping away from the code.
+          </p>
+          <p>
+            My north star is the same one that runs through every role: turn fragmented, duplicated
+            frontend work into a coherent <em style="font-style:italic;font-family:var(--serif)">system</em>.
+            The design system I architected cut brand rollout from three weeks to two days. The platforms
+            I've shipped serve 20,000+ daily users.
+          </p>
+        </div>
+        <div class="about-side reveal">
+          <div class="row"><span>Discipline</span><b>Frontend Architecture</b></div>
+          <div class="row"><span>Specialty</span><b>Design Systems</b></div>
+          <div class="row"><span>Rendering</span><b>SSR · CSR · ISR</b></div>
+          <div class="row"><span>Delivery</span><b>CDN · SEO · Perf</b></div>
+          <div class="row"><span>Teams led</span><b>Up to 5 engineers</b></div>
+          <div class="row"><span>Daily users served</span><b>20,000+</b></div>
+          <div class="row"><span>Education</span><b>B.Tech CS, BIT Meerut</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ METRICS ============ -->
+    <section id="impact" class="wrap">
+      <div class="sec-head reveal"><span class="no">01</span><h2>Impact</h2></div>
+      <div class="metrics reveal">
+        <div class="metric"><div class="big">10<span class="accent">×</span></div><div class="cap">Faster brand rollout — 3 weeks down to 2 days via an org-wide design system</div></div>
+        <div class="metric"><div class="big">5<span class="accent">×</span></div><div class="cap">Faster supplier onboarding — 2 weeks to 2–3 days through performance work</div></div>
+        <div class="metric"><div class="big">40<span class="accent">→</span>2<span style="font-size:.5em">%</span></div><div class="cap">Pipeline failure rate, cut by a config diff-checker — 20× more reliable</div></div>
+        <div class="metric"><div class="big">1k<span class="accent">+</span></div><div class="cap">Consultations on a single launch day for the HTP throughput system</div></div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="work" class="wrap">
+      <div class="sec-head reveal"><span class="no">02</span><h2>Experience</h2></div>
+      <div class="exp">
+        <div class="exp-row reveal">
+          <div class="when">Mar 2024 — Present</div>
+          <div>
+            <div class="role">Senior Software Engineer · Frontend Tech Lead</div>
+            <div class="org">ROSHN Group — Bengaluru</div>
+            <p class="desc">Real estate platform. Technical leader for a team of 5 engineers — owning frontend architecture, design decisions and delivery across a multi-brand, multi-product ecosystem.</p>
+            <ul>
+              <li>Led a team of 5 engineers as technical leader — set technical direction, drove architecture and design decisions, ran code reviews and owned delivery quality across the frontend ecosystem.</li>
+              <li>Served as technical lead for an <b>organization-wide design system</b> — architected it and drove adoption across all products, enabling teams to ship brand rollouts in 2 days, down from 3 weeks (<b>10× faster</b> cycle time).</li>
+              <li>Defined frontend architecture and component standards adopted across multiple product teams, decoupling shared UI from product code and eliminating duplicated effort across brands.</li>
+              <li>Designed and implemented a <b>headless CMS with custom plugins</b> to manage content across environments — decoupling content from code and enabling non-engineering teams to self-serve.</li>
+              <li>Containerized applications with Docker and orchestrated Kubernetes deployments with fully automated CI/CD pipelines, reducing deployment errors and increasing release frequency.</li>
+              <li>Established frontend engineering standards and review practices; mentored engineers and authored onboarding documentation that reduced new-hire ramp-up time.</li>
+              <li>Partnered with product, design and business stakeholders to translate requirements into technical specifications and delivery roadmaps.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-row reveal">
+          <div class="when">Jun 2023 — Feb 2024</div>
+          <div>
+            <div class="role">Principal Engineer</div>
+            <div class="org">Nineleaps Technologies — Bengaluru</div>
+            <p class="desc">Supply chain / procurement platform. Technical leader for a team of 2 — owning frontend and middleware architecture as a hands-on contributor.</p>
+            <ul>
+              <li>Led a team of 2 engineers as technical leader — set technical direction and drove architecture decisions across frontend and middleware layers while remaining an active hands-on contributor.</li>
+              <li>Identified and resolved performance bottlenecks using profiling tools, reducing supplier onboarding from 2 weeks to 2–3 days — a <b>5× improvement</b> that directly accelerated business revenue.</li>
+              <li>Built an <b>end-to-end automated test suite</b> with Puppeteer and Node.js covering critical user journeys, enabling reliable sanity and regression testing and contributing to near-zero production regressions.</li>
+              <li>Designed and built a middleware authorization and authentication layer in Node.js, centralizing security logic and improving response processing performance across the platform.</li>
+              <li>Published a reusable component library to an internal Nexus repository and configured Webpack for cross-browser compatibility — enabling code reuse across teams and improving developer experience.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-row reveal">
+          <div class="when">Apr 2021 — Apr 2023</div>
+          <div>
+            <div class="role">SDE III</div>
+            <div class="org">Nineleaps Technologies — Bengaluru</div>
+            <p class="desc">Hands-on contributor and cross-team technical go-to for ambiguous product and system design questions.</p>
+            <ul>
+              <li>Created a single, unified authentication journey serving multiple distinct user personas through <b>role-based access control (RBAC)</b> — consolidating fragmented login flows into one maintainable system.</li>
+              <li>Engineered a pipeline config diff-checker that compared configuration differences across all object levels, reducing pipeline failure rate from <b>40% to 2%</b> — a 20× improvement in reliability.</li>
+              <li>Drove architecture decisions and cross-team technical discussions; acted as the technical go-to for resolving ambiguous product and system design questions.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-row reveal">
+          <div class="when">Apr 2019 — Apr 2021</div>
+          <div>
+            <div class="role">SDE II</div>
+            <div class="org">Nineleaps Technologies — Bengaluru</div>
+            <p class="desc">Healthcare consultation platform — designed and built core patient–doctor interaction flows.</p>
+            <ul>
+              <li>Designed and developed <b>HTP (High Throughput mode)</b> — a consultation and prescription generation system supporting patient, doctor and doctor-assistant roles; facilitated <b>1,000+ consultations in a single day</b> on launch, demonstrating strong scalability and product-market fit.</li>
+              <li>Built dashboards and role-based UX flows that streamlined clinical workflows, improving both doctor efficiency and patient experience.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-row reveal">
+          <div class="when">Jun 2017 — Apr 2019</div>
+          <div>
+            <div class="role">Member of Technical Staff</div>
+            <div class="org">Nineleaps Technologies — Bengaluru</div>
+            <p class="desc">First engineering role — building real-time communication and engagement features on the core product.</p>
+            <ul>
+              <li>Developed a <b>WebSocket-based real-time chat service</b> for mentor–mentee communication, enabling low-latency, bidirectional messaging at scale.</li>
+              <li>Integrated Firebase Cloud Messaging (FCM) for cross-platform desktop push notifications, increasing user engagement.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="wrap">
+      <div class="sec-head reveal"><span class="no">03</span><h2>Selected work</h2></div>
+      <div class="proj">
+        <div class="proj-row reveal">
+          <div class="pno">P/01</div>
+          <div>
+            <h3>Organization-Wide Design System</h3>
+            <div class="org-s">ROSHN Group</div>
+            <p>Architected and drove adoption of a multi-brand design system that decoupled shared UI from product code and cut new brand rollout from three weeks to two days — a <span class="accent">10× faster</span> cycle time.</p>
+          </div>
+          <div class="tags"><span class="tag">React</span><span class="tag">Design Tokens</span><span class="tag">Component Lib</span><span class="tag">Multi-brand</span></div>
+        </div>
+
+        <div class="proj-row reveal">
+          <div class="pno">P/02</div>
+          <div>
+            <h3>Middleware Auth &amp; Performance Layer</h3>
+            <div class="org-s">Nineleaps</div>
+            <p>Designed a centralized Node.js authorization &amp; authentication layer with RBAC across personas, then profiled and removed bottlenecks — taking supplier onboarding from two weeks to 2–3 days (<span class="accent">5× faster</span>).</p>
+          </div>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">RBAC</span><span class="tag">Profiling</span><span class="tag">Middleware</span></div>
+        </div>
+
+        <div class="proj-row reveal">
+          <div class="pno">P/03</div>
+          <div>
+            <h3>Pipeline Config Diff-Checker</h3>
+            <div class="org-s">Nineleaps</div>
+            <p>Built a tool that compared configuration differences across every object level, surfacing drift before deploys and dropping pipeline failure rate from <span class="accent">40% to 2%</span> — a 20× reliability gain.</p>
+          </div>
+          <div class="tags"><span class="tag">CI/CD</span><span class="tag">Tooling</span><span class="tag">Reliability</span></div>
+        </div>
+
+        <div class="proj-row reveal">
+          <div class="pno">P/04</div>
+          <div>
+            <h3>HTP — High-Throughput Consultation System</h3>
+            <div class="org-s">Nineleaps · Healthcare</div>
+            <p>Designed a consultation &amp; prescription system spanning patient, doctor and assistant roles. Facilitated <span class="accent">1,000+ consultations</span> on launch day — proving real scalability and product-market fit.</p>
+          </div>
+          <div class="tags"><span class="tag">React</span><span class="tag">WebSockets</span><span class="tag">RBAC</span><span class="tag">Realtime</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LEADERSHIP ============ -->
+    <section id="leadership" class="wrap">
+      <div class="sec-head reveal"><span class="no">04</span><h2>Leadership</h2></div>
+      <div class="lead-grid">
+        <div class="lead-card reveal">
+          <div class="lno">L/01</div>
+          <h3>Team leadership</h3>
+          <p>Led teams of up to 5 engineers as technical leader across multiple roles — setting technical direction, owning architecture and design decisions, and driving delivery while remaining hands-on.</p>
+        </div>
+        <div class="lead-card reveal">
+          <div class="lno">L/02</div>
+          <h3>Engineering standards</h3>
+          <p>Established frontend engineering standards, code review practices and onboarding documentation that reduced new-hire ramp-up time and improved delivery consistency across teams.</p>
+        </div>
+        <div class="lead-card reveal">
+          <div class="lno">L/03</div>
+          <h3>Mentorship</h3>
+          <p>Mentored junior and mid-level engineers, acting as the cross-team technical go-to for resolving ambiguous product and system design questions.</p>
+        </div>
+        <div class="lead-card reveal">
+          <div class="lno">L/04</div>
+          <h3>Stakeholder partnership</h3>
+          <p>Partnered with product, design and business stakeholders to translate requirements into technical specifications and delivery roadmaps.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CAPABILITIES ============ -->
+    <section id="stack" class="wrap">
+      <div class="sec-head reveal"><span class="no">05</span><h2>What I do</h2></div>
+      <div class="caps">
+        <div class="cap-col reveal">
+          <h4>Frontend Architecture</h4>
+          <ul>
+            <li>Design systems &amp; tokens</li>
+            <li>Reusable React component libraries</li>
+            <li>Component &amp; module architecture</li>
+            <li>Decoupling shared UI from product code</li>
+            <li>TypeScript · Redux · Next.js · Remix</li>
+          </ul>
+        </div>
+        <div class="cap-col reveal">
+          <h4>Rendering &amp; Delivery</h4>
+          <ul>
+            <li>Server-side &amp; client-side rendering</li>
+            <li>Static generation &amp; incremental revalidation</li>
+            <li>CDN caching &amp; edge strategy</li>
+            <li>Crawler-friendly, SEO-optimized pages</li>
+            <li>Performance profiling &amp; Core Web Vitals</li>
+          </ul>
+        </div>
+        <div class="cap-col reveal">
+          <h4>Platform &amp; Leadership</h4>
+          <ul>
+            <li>Leading teams of up to 5 engineers</li>
+            <li>NestJS · REST · WebSockets · middleware</li>
+            <li>Docker · Kubernetes · GitLab CI · Jenkins</li>
+            <li>Headless CMS &amp; E2E testing (Puppeteer)</li>
+            <li>Code review, mentorship &amp; standards</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="matrix reveal" style="margin-top:clamp(3rem,6vw,4.5rem)">
+        <div class="mrow">
+          <div class="mkey">Languages</div>
+          <div class="mvals"><span class="chip">TypeScript</span><span class="chip">JavaScript (ES6+)</span><span class="chip">Node.js</span></div>
+        </div>
+        <div class="mrow">
+          <div class="mkey">Frontend</div>
+          <div class="mvals"><span class="chip">React</span><span class="chip">Redux</span><span class="chip">Next.js</span><span class="chip">Remix</span><span class="chip">Design Systems</span><span class="chip">Component Architecture</span></div>
+        </div>
+        <div class="mrow">
+          <div class="mkey">Backend</div>
+          <div class="mvals"><span class="chip">NestJS</span><span class="chip">REST API Design</span><span class="chip">WebSockets</span><span class="chip">Middleware Architecture</span></div>
+        </div>
+        <div class="mrow">
+          <div class="mkey">Infrastructure</div>
+          <div class="mvals"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">GitLab CI/CD</span><span class="chip">Jenkins</span><span class="chip">Headless CMS</span></div>
+        </div>
+        <div class="mrow">
+          <div class="mkey">Practices</div>
+          <div class="mvals"><span class="chip">Technical Leadership</span><span class="chip">System Design</span><span class="chip">Performance Optimization</span><span class="chip">E2E Testing (Puppeteer)</span><span class="chip">Code Review</span><span class="chip">Mentorship</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education" class="wrap">
+      <div class="sec-head reveal"><span class="no">06</span><h2>Education</h2></div>
+      <div class="edu reveal">
+        <div class="when">2016</div>
+        <div>
+          <div class="deg">B.Tech in Computer Science</div>
+          <div class="inst">BIT Meerut</div>
+        </div>
+        <div class="label">Graduated</div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="contact wrap">
+      <div class="sec-head reveal"><span class="no">07</span><h2>Contact</h2></div>
+      <p class="big-cta reveal">Have a platform worth building? <a href="mailto:akshatmindfire@gmail.com">Let's talk.</a></p>
+      <div class="contact-meta reveal">
+        <a href="mailto:akshatmindfire@gmail.com"><span class="k">Email</span>akshatmindfire@gmail.com</a>
+        <a href="tel:+918090286171"><span class="k">Phone</span>+91 80902 86171</a>
+        <a href="https://linkedin.com/in/akshat-srivastava" target="_blank" rel="noopener"><span class="k">LinkedIn</span>/in/akshat-srivastava ↗</a>
+        <a href="#top"><span class="k">Location</span>Bengaluru, India</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span>© <span id="yr"></span> Akshat Srivastava</span>
+      <span>Frontend Tech Lead · Design Systems</span>
+      <span>Built as a design system, not a page.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Scroll reveal — progressive enhancement
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+    },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
